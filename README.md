@@ -2,7 +2,7 @@
 
 eFinancialCareers jobs scraper and API: search every job on efinancialcareers.com, the job board for finance, banking and quant roles, in every country at once, live, and get each job's title, company, place, contract type, sectors, pay as shown and as numbers, whether a recruitment agency posted it, skills, first posting date and link, newest first. Turn on full details for the description, the employer's own apply link and the job reference.
 
-Use it as an eFinancialCareers API with no login, an efinancialcareers.com scraper for finance jobs, banking jobs, quant jobs, hedge fund, investment banking, risk and compliance jobs in London, New York, Singapore, Hong Kong, Frankfurt or Zurich, or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent over MCP, and export JSON, CSV or Excel. It reads the same public JSON APIs that efinancialcareers.com's own pages call. Available as an [Apify Actor](https://apify.com/anshumanatrey/efinancialcareers-jobs-search). $0.0001 per job, $0.00011 with full details, $0.001 per run start, no login, no API key.
+Use it as an eFinancialCareers API with no login, an efinancialcareers.com scraper for finance jobs, banking jobs, quant jobs, hedge fund, investment banking, risk and compliance jobs in London, New York, Singapore, Hong Kong, Frankfurt or Zurich, or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent over MCP, and export JSON, CSV or Excel. It reads the same public JSON APIs that efinancialcareers.com's own pages call. Available as an [Apify Actor](https://apify.com/anshumanatrey/efinancialcareers-jobs-search). $0.000023 per job, $0.000034 with full details, $0.0021 per run start, no login, no API key.
 
 ## What does it do?
 
@@ -44,19 +44,22 @@ Every actor on the Apify Store that names eFinancialCareers in its title or slug
 
 ## How much does it cost to scrape eFinancialCareers jobs?
 
-Pay per event: $0.10 per 1,000 jobs, or $0.11 per 1,000 with full details, plus $0.001 per run start. Apify's free $5 monthly credit covers about 45,000 jobs in runs of 100. Platform usage is included, and there is no monthly fee.
+Pay per event: $0.023 per 1,000 jobs, or $0.034 per 1,000 with full details, plus $0.0021 per run at the default 512 MB. Apify's free $5 monthly credit covers about 113,000 jobs in runs of 100. Platform usage is included, and there is no monthly fee.
 
 | Event | Price | When it is charged |
 |---|---|---|
-| Job | $0.0001 | One saved job, and one checked link that is closed or not found |
-| Job with details | $0.00011 | One saved job with full details on |
-| Run start | $0.001 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB |
+| Job | $0.000023 | One saved job, and one checked link that is closed or not found |
+| Job with details | $0.000034 | One saved job with full details on |
+| Run start | $0.0021 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.0021 at the default 512 MB |
 
-| Run (free plan price, default memory) | Cost |
+eFinancialCareers Jobs Scraper's Apify Store header shows the lowest discount-tier price, the GOLD price: $0.016 per 1,000 jobs. FREE users (Apify's Free plan) pay $0.000023 a job and $0.000034 with full details, BRONZE (Starter) $0.000022 and $0.000033, SILVER (Scale) $0.000019 and $0.000027, and GOLD (Business) and the enterprise tiers $0.000016 and $0.000023. Each price is what that row costs on Apify at that plan's own rates, measured on Apify runs, plus a markup of 100% on the Free plan that falls to 85% on Business. The run start is a flat fee on every plan, $0.0021 per GB of memory, and the header never shows it.
+
+| Run (Free plan price, default memory) | Cost |
 |---|---|
-| 100 newest jobs | $0.011 |
-| 100 jobs with full details | $0.012 |
-| 1,000 jobs | $0.101 |
+| 100 newest jobs | $0.0044 |
+| 100 jobs with full details | $0.0055 |
+| 1,000 jobs | $0.025 |
+| 10,000 jobs, the most one eFinancialCareers search shows | $0.23 |
 
 Number of jobs (`maxJobs`) and the run start set the most a run can cost, and a run stops at its spending limit with a message saying so.
 
@@ -71,7 +74,7 @@ Every actor on the Apify Store that names eFinancialCareers in its title or slug
 | solidcode/efinancialcareers-scraper | 17 | $0.0012 | $0.00005 | Keywords, region, sector, filters |
 | easyapi/efinancialcareers-jobs-scraper | 8 | $0.00299 | $0.09 | Search links |
 | unfenced-group/efinancialcareers-scraper | 5 | $0.00089 | $0.001 | Keyword, markets, filters |
-| This actor | new | $0.0001, $0.00011 with details | $0.001 per GB | One keyword or none, every country |
+| This actor | new | $0.000023, $0.000034 with details | $0.0021 per GB | One keyword or none, every country |
 
 ## Which inputs does it take?
 
@@ -158,7 +161,7 @@ Full details add `description`, `descriptionHtml`, `reference`, `city`, `region`
 
 ## How fast is it?
 
-Measured on a laptop on 2026-11-10: the example input (quant) took 24 s, the empty form 41 s, a city search such as compliance in Singapore 13 s, and 1,000 jobs 93 s (11 rows a second) with a memory peak of 95 MB. Each job is opened once to read its first posting, about 2 to 4 jobs read for every one saved, because so many of the site's newest jobs are reposts. Apify's own times come with the first runs there.
+Measured on Apify at the default 512 MB on 2026-11-10: the example input (quant) took 5 s, the empty form 4 s, compliance in Singapore 3 s, quant with full details 10 s, part-time or temporary jobs in London 9 s, and 1,000 jobs 126 s (8 rows a second) with a memory peak of 136 MB. eFinancialCareers answered in 0.05 to 1.2 s a call depending on the minute, so the example took 4 s in one 1 GB run and 21 s in another. Each job is opened once to read its first posting, about 2 to 4 jobs read for every one saved, because so many of the site's newest jobs are reposts.
 
 ## Common questions
 

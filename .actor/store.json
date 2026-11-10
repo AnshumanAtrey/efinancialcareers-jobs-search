@@ -1,5 +1,5 @@
 {
-    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md) after every deploy. actorId pins the Actor created by the first deploy (2026-11-10, build 1.0.1), so a rename keeps the same Actor. isPublic stays false (owner, 2026-11-10: keep it private). Prices are placeholders until they are measured on Apify (Phase B); apply false until then, so CI sends no pricing.",
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md) after every deploy. actorId pins the Actor created by the first deploy (2026-11-10, build 1.0.1), so a rename keeps the same Actor. isPublic stays false (owner, 2026-11-10: keep it private). Prices measured on Apify on 2026-11-10 (Phase B, pricing.$comment); apply true, so CI sends them while the Actor has no pricing yet.",
     "actorId": "gvQu2LGSX9AHbgDVl",
     "seoTitle": "eFinancialCareers Jobs Scraper - Finance Jobs, Pay",
     "seoDescription": "Search every eFinancialCareers job by title, city, sector and seniority: quant, risk, compliance and banking roles, with pay, agency flag and apply link.",
@@ -12,13 +12,13 @@
     "isPublic": false,
     "defaultRunOptions": {
         "build": "latest",
-        "memoryMbytes": 1024,
-        "timeoutSecs": 1800
+        "memoryMbytes": 512,
+        "timeoutSecs": 3600
     },
-    "defaultRunOptions$comment": "1 GB until Apify runs measure 512 MB, 1 GB and 2 GB (Phase B). Locally the empty form took 22 to 25 s and peaked under 200 MB.",
+    "defaultRunOptions$comment": "Default 512 MB, measured on Apify on 2026-11-10 (build 1.0.2): the example input took 5.4 s and $0.000834 at 512 MB, 3.9 s and $0.000904 at 1 GB (20.9 s and $0.001885 in a minute when eFinancialCareers answered slowly), 3.9 s and $0.001118 at 2 GB, peaking at 68 to 78 MB. The work waits on eFinancialCareers (CPU averaged 7% of its share in the 1,000-job run), so more memory buys at most 1.5 s on 100 jobs and doubles the compute bill; the start fee is one event up to 1 GB either way. Every run at 512 MB peaked at 65 to 136 MB (1,000 jobs). Timeout 3600 s: 1,000 jobs took 126 s when the site answered slowly (1.2 s a call), so the most one search can return (10,000 jobs, or 20,000 with no words) fits in an hour.",
     "pricing": {
-        "$comment": "PLACEHOLDER prices, not measured: Phase B measures the cost on Apify and sets them by the owner's 80-100% markup ladder (BRIEF.md section 10). apply false: CI sends no pricing until then.",
-        "apply": false,
+        "$comment": "Cost plus markup (owner, 2026-11-10, jobs batch 3): FREE 100%, BRONZE 95%, SILVER 90%, GOLD 85%, PLATINUM and DIAMOND 80% over the measured Apify cost at each tier's unit prices, rounded up to two significant figures, never under $0.00001. Measured on Apify (8 runs at 512 MB: opxZeiboOu7PmGU7W, yahWubIsqzmDLGLXr, i9kp8VTAezXu6ndV5, dfvpKDxvoiMltRqfu, erjY3CFGiXCvxM0GZ, PsTGjrfoPjb3f8zcG, ckJpjWvH3C8OpuWOa, aGrzMwi0ec4LQgQnF): a run costs $0.000087 + $0.00000898 a job + $0.00001329 a job with details at FREE unit prices (docs.apify.com/platform/actors/publishing/monetize/pricing-and-costs.md); PLATINUM and DIAMOND at GOLD's unit prices. Margin (SEO.md 16.4, 1 - cost / (0.8 x price)) per tier: job FREE 51.2%, BRONZE 48.9%, SILVER 49.0%, GOLD 47.7%, PLATINUM 47.7%, DIAMOND 47.7%; job-details FREE 51.1%, BRONZE 49.7%, SILVER 48.0%, GOLD 48.1%, PLATINUM 48.1%, DIAMOND 48.1%. Run start (apify-actor-start) $0.0021 per GB, flat: 100% over the fitted fixed cost gave $0.00022; it was raised to $0.0021 so every one of the 11 measured runs clears an 80% markup at every tier (the binding one: the example at 1 GB in a slow minute, run gdC4WP2kUXqXFlXji, 20.9 s and $0.001885, 82% on BRONZE; the sparse search, 35 rows in 8.6 s, clears 289%; 1,000 jobs 112%). Written by the scratch pricing/calc_pricing.py from block_cost.json.",
+        "apply": true,
         "pricingInfos": [
             {
                 "pricingModel": "PAY_PER_EVENT",
@@ -31,22 +31,22 @@
                             "isPrimaryEvent": true,
                             "eventTieredPricingUsd": {
                                 "FREE": {
-                                    "tieredEventPriceUsd": 0.0001
+                                    "tieredEventPriceUsd": 2.3e-05
                                 },
                                 "BRONZE": {
-                                    "tieredEventPriceUsd": 0.0001
+                                    "tieredEventPriceUsd": 2.2e-05
                                 },
                                 "SILVER": {
-                                    "tieredEventPriceUsd": 0.0001
+                                    "tieredEventPriceUsd": 1.9e-05
                                 },
                                 "GOLD": {
-                                    "tieredEventPriceUsd": 0.0001
+                                    "tieredEventPriceUsd": 1.6e-05
                                 },
                                 "PLATINUM": {
-                                    "tieredEventPriceUsd": 0.0001
+                                    "tieredEventPriceUsd": 1.6e-05
                                 },
                                 "DIAMOND": {
-                                    "tieredEventPriceUsd": 0.0001
+                                    "tieredEventPriceUsd": 1.6e-05
                                 }
                             }
                         },
@@ -55,29 +55,29 @@
                             "eventDescription": "One saved job row with full details on: everything in a Job row plus the description as text and HTML, the employer's own apply link when the job is applied for there, the job reference and the city, region and country.",
                             "eventTieredPricingUsd": {
                                 "FREE": {
-                                    "tieredEventPriceUsd": 0.00011
+                                    "tieredEventPriceUsd": 3.4e-05
                                 },
                                 "BRONZE": {
-                                    "tieredEventPriceUsd": 0.00011
+                                    "tieredEventPriceUsd": 3.3e-05
                                 },
                                 "SILVER": {
-                                    "tieredEventPriceUsd": 0.00011
+                                    "tieredEventPriceUsd": 2.7e-05
                                 },
                                 "GOLD": {
-                                    "tieredEventPriceUsd": 0.00011
+                                    "tieredEventPriceUsd": 2.3e-05
                                 },
                                 "PLATINUM": {
-                                    "tieredEventPriceUsd": 0.00011
+                                    "tieredEventPriceUsd": 2.3e-05
                                 },
                                 "DIAMOND": {
-                                    "tieredEventPriceUsd": 0.00011
+                                    "tieredEventPriceUsd": 2.3e-05
                                 }
                             }
                         },
                         "apify-actor-start": {
                             "eventTitle": "Actor Start",
                             "eventDescription": "Charged when the Actor starts running. Number of events charged depends on Actor memory (one event per GB, minimum one event).",
-                            "eventPriceUsd": 0.001
+                            "eventPriceUsd": 0.0021
                         }
                     }
                 }
