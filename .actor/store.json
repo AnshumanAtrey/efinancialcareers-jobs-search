@@ -1,5 +1,6 @@
 {
-    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md) after every deploy. No actorId until the first deploy creates the Actor; then it pins that Actor so a rename keeps it. isPublic stays false (owner, 2026-11-10: keep it private). Prices are placeholders until they are measured on Apify (Phase B); apply false until then, so CI sends no pricing.",
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md) after every deploy. actorId pins the Actor created by the first deploy (2026-11-10, build 1.0.1), so a rename keeps the same Actor. isPublic stays false (owner, 2026-11-10: keep it private). Prices are placeholders until they are measured on Apify (Phase B); apply false until then, so CI sends no pricing.",
+    "actorId": "gvQu2LGSX9AHbgDVl",
     "seoTitle": "eFinancialCareers Jobs Scraper - Finance Jobs, Pay",
     "seoDescription": "Search every eFinancialCareers job by title, city, sector and seniority: quant, risk, compliance and banking roles, with pay, agency flag and apply link.",
     "exampleRunInput": {
