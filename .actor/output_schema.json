@@ -1,0 +1,20 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "eFinancialCareers Jobs Search output",
+    "description": "The jobs found, one row per job in the default dataset (switch between the Jobs and Details views), plus a run summary record.",
+    "type": "object",
+    "properties": {
+        "jobs": {
+            "type": "string",
+            "title": "Jobs found (jobs)",
+            "description": "Every saved job, newest first by first posting: title, company, place, contract type, sectors, pay, whether an agency posted it, skills, dates and link, and with details on the description and the employer's own apply link. Export as JSON, CSV or Excel.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        },
+        "summary": {
+            "type": "string",
+            "title": "Run summary (summary)",
+            "description": "The OUTPUT record in the default key-value store: jobs read, matched and saved, checked links, notes about how the input was read, and the settings used.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+        }
+    }
+}

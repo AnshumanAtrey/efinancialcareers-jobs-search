@@ -1,0 +1,372 @@
+{
+    "title": "eFinancialCareers Jobs Search",
+    "description": "Type a job title and press Start: you get the newest matching jobs on efinancialcareers.com, the job board for finance, banking and quant roles (70,000+ open jobs in 60+ countries). Every other field is optional. Press Start with the form empty for the newest jobs of every kind.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "searchTerms": {
+            "title": "Job titles to find (searchTerms)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type the job titles to find, one per line, for example quant, compliance or risk manager. A job matches when its title has every word of a line: quant finds Quant Researcher and Senior Quant. Leave it empty to get the newest jobs of every kind. A pasted eFinancialCareers search link works too, with its words and place.",
+            "placeholderValue": "quant analyst",
+            "example": [
+                "quant"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "location": {
+            "title": "Where the job is (location)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type where the jobs should be: cities, countries or regions, one per line, for example London, New York, Singapore, Hong Kong, Germany or EMEA. A country or region is searched as a whole, a city by its name: eFinancialCareers adds nearby towns, and only jobs in the city typed are kept. Gulf finds the UAE, Saudi Arabia, Qatar, Kuwait and Bahrain. Leave it empty for every country.",
+            "placeholderValue": "London",
+            "example": [
+                "London"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "sector": {
+            "title": "Job sector (sector)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the job sectors to keep, as eFinancialCareers files its jobs: quantitative analytics, investment banking, asset management, hedge funds, private equity, risk, compliance, trading, fintech and the rest. Every row names its sectors. Leave it empty for every sector. Typed names work too, such as Quantitative Analytics, M&A or PE.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "technology",
+                    "accounting",
+                    "insurance",
+                    "compliance",
+                    "operations",
+                    "asset-management",
+                    "wealth-management",
+                    "sales-marketing",
+                    "risk",
+                    "corporate-banking",
+                    "retail-banking",
+                    "consultancy",
+                    "hr-recruitment",
+                    "investment-banking",
+                    "real-estate",
+                    "graduates",
+                    "trading",
+                    "quant",
+                    "info-services",
+                    "private-equity",
+                    "fintech",
+                    "hedge-funds",
+                    "ir-pr",
+                    "credit",
+                    "equities",
+                    "capital-markets",
+                    "commodities",
+                    "fixed-income",
+                    "research",
+                    "fx",
+                    "derivatives",
+                    "inv-consulting",
+                    "custody",
+                    "industry",
+                    "public-sector",
+                    "islamic-finance"
+                ],
+                "enumTitles": [
+                    "Technology",
+                    "Accounting & Finance (accounting)",
+                    "Insurance",
+                    "Compliance & Legal (compliance)",
+                    "Operations",
+                    "Asset Management (asset-management)",
+                    "Wealth Management (wealth-management)",
+                    "Sales & Marketing (sales-marketing)",
+                    "Risk Management (risk)",
+                    "Corporate Banking (corporate-banking)",
+                    "Retail Banking (retail-banking)",
+                    "Consultancy",
+                    "HR & Recruitment (hr-recruitment)",
+                    "Investment Banking (investment-banking)",
+                    "Real Estate (real-estate)",
+                    "Graduates & Internships (graduates)",
+                    "Trading",
+                    "Quantitative Analytics (quant)",
+                    "Information Services (info-services)",
+                    "Private Equity & VC (private-equity)",
+                    "Fintech",
+                    "Hedge Funds (hedge-funds)",
+                    "Investor Relations & PR (ir-pr)",
+                    "Credit",
+                    "Equities",
+                    "Capital Markets (capital-markets)",
+                    "Commodities",
+                    "Debt & Fixed Income (fixed-income)",
+                    "Research",
+                    "FX & Money Markets (fx)",
+                    "Derivatives",
+                    "Investment Consulting (inv-consulting)",
+                    "Global Custody (custody)",
+                    "Industry & Commerce (industry)",
+                    "Public Sector (public-sector)",
+                    "Islamic Finance (islamic-finance)"
+                ]
+            },
+            "example": [
+                "quant"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "seniority": {
+            "title": "Seniority level (seniority)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the seniority levels to keep, as eFinancialCareers files its jobs: intern or graduate, junior, analyst, associate, AVP or senior, vice president, SVP or head of, director, managing director or C-suite. Each row then names its level. Leave it empty for every level. Typed words work too, such as VP or MD.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "intern-graduate",
+                    "junior",
+                    "analyst",
+                    "associate",
+                    "avp-senior",
+                    "vp",
+                    "svp-head",
+                    "director",
+                    "managing-director",
+                    "c-suite"
+                ],
+                "enumTitles": [
+                    "Intern or graduate (intern-graduate)",
+                    "Junior",
+                    "Analyst",
+                    "Associate, mid level (associate)",
+                    "AVP or senior (avp-senior)",
+                    "Vice president (vp)",
+                    "SVP or head of (svp-head)",
+                    "Director",
+                    "Managing director (managing-director)",
+                    "C-suite executive (c-suite)"
+                ]
+            },
+            "example": [
+                "vp"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "postedWithin": {
+            "title": "Posted in the last (postedWithin)",
+            "type": "string",
+            "editor": "select",
+            "description": "Pick how new the jobs must be: first posted in the last 24 hours, 3 days, 7 days or 30 days. 30 days, the default, keeps the last month's jobs, newest first, and any time keeps every open job. The date is the job's first posting, not the day eFinancialCareers last moved it back to the top of its list (refreshedAt in each row). You can also type your own period, such as 48 hours.",
+            "enumSuggestedValues": [
+                "24 hours",
+                "3 days",
+                "7 days",
+                "30 days",
+                "any time"
+            ],
+            "enumTitles": [
+                "24 hours",
+                "3 days",
+                "7 days",
+                "30 days",
+                "any time"
+            ],
+            "example": "7 days",
+            "default": "30 days",
+            "nullable": true
+        },
+        "maxJobs": {
+            "title": "Number of jobs (maxJobs)",
+            "type": "integer",
+            "editor": "number",
+            "unit": "jobs",
+            "description": "Type how many jobs to get, newest first: 100 by default. Type 0 to get every matching job; one eFinancialCareers search reaches 10,000 jobs, so narrow a big one by place, sector or seniority. Each job is one charged row, so this sets the most a run can cost.",
+            "prefill": 100,
+            "example": 100,
+            "default": 100,
+            "sectionCaption": "How many and how much",
+            "nullable": true
+        },
+        "includeDetails": {
+            "title": "Full details (includeDetails)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick to add the full details of each job: the description as text and HTML, the employer's own apply link (its Workday, iCIMS or other careers page) when the job is applied for there, the job reference, and the city, state and country. Each such row is charged as a Job with details.",
+            "default": false,
+            "nullable": true
+        },
+        "employmentType": {
+            "title": "Job type (employmentType)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the job type: full-time (permanent), part-time, contract (contract or self-employed), internship (internships and graduate trainee programmes) or temporary, or several. Leave it empty for every job type. eFinancialCareers states it on every job.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "full-time",
+                    "part-time",
+                    "contract",
+                    "intern",
+                    "temporary"
+                ],
+                "enumTitles": [
+                    "Full-time",
+                    "Part-time",
+                    "Contract or freelance (contract)",
+                    "Internship or graduate (intern)",
+                    "Temporary"
+                ]
+            },
+            "example": [
+                "contract"
+            ],
+            "default": [],
+            "sectionCaption": "Narrow the search",
+            "nullable": true
+        },
+        "workType": {
+            "title": "Remote or office (workType)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick remote, hybrid or in the office, or several. Leave it empty for all of them. eFinancialCareers states the work arrangement on about 1 job in 25, so a choice here keeps only those jobs. Typed words such as wfh work too.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "remote",
+                    "hybrid",
+                    "onsite"
+                ],
+                "enumTitles": [
+                    "Remote",
+                    "Hybrid",
+                    "In the office (onsite)"
+                ]
+            },
+            "example": [
+                "hybrid"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "minSalary": {
+            "title": "Minimum pay (minSalary)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Type the minimum yearly pay to keep, with its currency: £100k, 150000 USD, HK$1m or €90,000. eFinancialCareers' own pay filter decides, so it also keeps jobs whose pay the employer entered but shows as Competitive, as on the site; a job showing a lower pay is left out. Leave it empty for every pay.",
+            "example": "£100k",
+            "default": "",
+            "nullable": true
+        },
+        "salaryCurrency": {
+            "title": "Pay currency (salaryCurrency)",
+            "type": "string",
+            "editor": "select",
+            "description": "Pick the currency of Minimum pay when you typed a number alone, such as 100000. A currency typed with the amount, such as £100k, wins. Leave it empty otherwise.",
+            "enumSuggestedValues": [
+                "USD",
+                "GBP",
+                "EUR",
+                "CHF",
+                "HKD",
+                "SGD",
+                "INR",
+                "AUD",
+                "MYR",
+                "AED",
+                "JPY",
+                "SAR",
+                "CNY",
+                "QAR",
+                "CAD",
+                "BHD",
+                "KWD",
+                "ZAR",
+                "SEK",
+                "DKK",
+                "NOK",
+                "NZD"
+            ],
+            "enumTitles": [
+                "US dollar (USD)",
+                "Pound sterling (GBP)",
+                "Euro (EUR)",
+                "Swiss franc (CHF)",
+                "Hong Kong dollar (HKD)",
+                "Singapore dollar (SGD)",
+                "Indian rupee (INR)",
+                "Australian dollar (AUD)",
+                "Malaysian ringgit (MYR)",
+                "UAE dirham (AED)",
+                "Japanese yen (JPY)",
+                "Saudi riyal (SAR)",
+                "Chinese yuan (CNY)",
+                "Qatari riyal (QAR)",
+                "Canadian dollar (CAD)",
+                "Bahraini dinar (BHD)",
+                "Kuwaiti dinar (KWD)",
+                "South African rand (ZAR)",
+                "Swedish krona (SEK)",
+                "Danish krone (DKK)",
+                "Norwegian krone (NOK)",
+                "New Zealand dollar (NZD)"
+            ],
+            "example": "GBP",
+            "default": "",
+            "nullable": true
+        },
+        "excludeAgencies": {
+            "title": "No agency jobs (excludeAgencies)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick to leave out the jobs posted by a recruitment agency or job platform: those whose company profile on eFinancialCareers is in HR & Recruitment, such as Robert Half, Hays, Morgan McKinley or Workwise. A job whose poster has no profile there is kept, and every row says agency true, false or empty.",
+            "default": false,
+            "nullable": true
+        },
+        "excludeTerms": {
+            "title": "Leave out words (excludeTerms)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type words that leave a job out when its title has them, one per line, for example intern or senior. Leave it empty to keep every job.",
+            "placeholderValue": "intern",
+            "example": [
+                "intern"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "searchDescriptions": {
+            "title": "Match full text (searchDescriptions)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick to match the full text: keep every job eFinancialCareers' own search finds for your words, also when they are only in its description or company, not in the title: python then also finds a Quant Researcher job that asks for Python. A common word reads every job the search finds, up to 10,000, so it is slower.",
+            "default": false,
+            "nullable": true
+        },
+        "companies": {
+            "title": "Only these companies (companies)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type company names to search only their jobs, one per line, for example Goldman Sachs, Citi or JPMorgan, or paste an eFinancialCareers company page link (efinancialcareers.com/jobs/at-Citi). A name is read as the company eFinancialCareers files the jobs under: Goldman Sachs finds Goldman Sachs, Inc. Leave it empty to search every company.",
+            "placeholderValue": "Goldman Sachs",
+            "example": [
+                "Goldman Sachs"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "jobUrls": {
+            "title": "Job links to check (jobUrls)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Paste eFinancialCareers job links to check whether they are still open, one per line, instead of searching. Each comes back open with the job, closed (expired), or not found. Links of every country site work: .com, .co.uk, .sg, .hk, .de and the rest.",
+            "placeholderValue": "https://www.efinancialcareers.com/jobs-United_Kingdom-London-Quant.id24879038",
+            "default": [],
+            "sectionCaption": "Check job links",
+            "nullable": true
+        }
+    }
+}

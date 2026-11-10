@@ -1,0 +1,531 @@
+{
+    "actorSpecification": 1,
+    "name": "efinancialcareers-jobs-search",
+    "title": "eFinancialCareers Jobs Scraper & API - Banking & Quant Jobs",
+    "description": "eFinancialCareers jobs scraper and API: every finance, banking and quant job on efinancialcareers.com, all countries, searched live and newest first by first posting. Salary, sector, seniority, contract type and agency or employer on each row. Finance jobs in London, New York, Singapore.",
+    "version": "1.0",
+    "buildTag": "latest",
+    "categories": [
+        "JOBS",
+        "LEAD_GENERATION",
+        "OPEN_SOURCE"
+    ],
+    "input": "./INPUT_SCHEMA.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "minMemoryMbytes": 512,
+    "maxMemoryMbytes": 4096,
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "title": "eFinancialCareers jobs",
+            "description": "One row per job, newest first by first posting: title, company, place, contract and job type, sectors, pay as shown and as numbers, whether an agency posted it, skills, posting dates and link; with details on, also the description, the employer's own apply link and the city, region and country. The run summary is the OUTPUT record, not a row.",
+            "fields": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job title (title)",
+                        "description": "The job title as eFinancialCareers shows it.",
+                        "example": "Quant Trader"
+                    },
+                    "company": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company name (company)",
+                        "description": "The company the job is with, as eFinancialCareers names it: the employer, or the recruitment agency when an agency posts under its own name.",
+                        "example": "Citi"
+                    },
+                    "location": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main location (location)",
+                        "description": "The job's place as eFinancialCareers shows it: city and country.",
+                        "example": "Hong Kong"
+                    },
+                    "workType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Remote or office (workType)",
+                        "description": "remote, hybrid or onsite when eFinancialCareers states it (about 1 job in 25), else empty.",
+                        "example": "hybrid"
+                    },
+                    "employmentType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job type (employmentType)",
+                        "description": "full-time, part-time, contract, intern or temporary, from the job's contract and hours.",
+                        "example": "full-time"
+                    },
+                    "contractType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Contract type (contractType)",
+                        "description": "The contract as eFinancialCareers names it: Permanent, Contract, Temporary, Internships & Graduate Trainee or Self Employed.",
+                        "example": "Permanent"
+                    },
+                    "seniority": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Seniority level (seniority)",
+                        "description": "The seniority level eFinancialCareers files the job under, such as Vice President/Principal. Filled when the run filters by Seniority; eFinancialCareers does not show it on a job.",
+                        "example": "Vice President/Principal"
+                    },
+                    "sectors": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Job sectors (sectors)",
+                        "description": "The sectors eFinancialCareers files the job under, with the sub-sector after a colon.",
+                        "example": [
+                            "Trading: Capital markets",
+                            "Capital Markets"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "salary": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay as shown (salary)",
+                        "description": "The pay text as eFinancialCareers shows it, such as £100k - £120k or Competitive (82% of jobs).",
+                        "example": "USD150000 - USD200000 per year + Performance Bonus"
+                    },
+                    "salaryMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Lowest pay (salaryMin)",
+                        "description": "The lowest pay as a number, in salaryCurrency, when the job shows its pay. Empty when it shows Competitive.",
+                        "example": 150000
+                    },
+                    "salaryMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Highest pay (salaryMax)",
+                        "description": "The highest pay as a number, in salaryCurrency, when the job shows its pay.",
+                        "example": 200000
+                    },
+                    "salaryCurrency": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay currency (salaryCurrency)",
+                        "description": "The currency of salaryMin and salaryMax, such as USD, GBP, EUR or HKD.",
+                        "example": "USD"
+                    },
+                    "agency": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ],
+                        "title": "Posted by an agency? (agency)",
+                        "description": "true when the job was posted by a company eFinancialCareers files under HR & Recruitment (a recruitment agency or job platform), false when it files the poster under another industry, empty when the poster has no profile there.",
+                        "example": false
+                    },
+                    "postedBy": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Posted by (postedBy)",
+                        "description": "The name on the company profile the job's page shows: the employer, or the agency or platform that posted it. Empty with no profile.",
+                        "example": "Citi Hong Kong"
+                    },
+                    "postedByIndustry": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Industry (postedByIndustry)",
+                        "description": "That profile's industry on eFinancialCareers, such as Asset Management or HR & Recruitment.",
+                        "example": "Accounting & Finance"
+                    },
+                    "skills": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Skills asked for (skills)",
+                        "description": "The skills eFinancialCareers lists in the job page's markup.",
+                        "example": [
+                            "Research",
+                            "Risk",
+                            "Credit"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "summary": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Short summary (summary)",
+                        "description": "eFinancialCareers' own short summary of the job.",
+                        "example": "Citi is seeking a senior Quant Trader within Institutional Trading in Markets and Securities Services."
+                    },
+                    "postedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "First posted (postedAt)",
+                        "description": "When the job was first posted on eFinancialCareers, in UTC: the date its own page gives Google. Newest first and Posted in the last use it.",
+                        "example": "2026-11-09T09:09:32Z"
+                    },
+                    "refreshedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Moved to the top (refreshedAt)",
+                        "description": "When eFinancialCareers last listed the job at the top of its search, in UTC. Paid jobs move back to the top every 6 days, so this can be weeks after postedAt.",
+                        "example": "2026-11-09T09:09:32Z"
+                    },
+                    "expiresAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Closes on (expiresAt)",
+                        "description": "When the job is set to come down, in UTC, when eFinancialCareers states it.",
+                        "example": "2027-09-06T15:45:00Z"
+                    },
+                    "jobUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job link (jobUrl)",
+                        "description": "The job's page on efinancialcareers.com.",
+                        "example": "https://www.efinancialcareers.com/jobs-Hong_Kong-Hong_Kong-Quant_Trader.id24984010"
+                    },
+                    "applyUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Apply link (applyUrl)",
+                        "description": "Where to apply: the job's page, or with details on the employer's own apply page (Workday, iCIMS, Lever) when the job is applied for there.",
+                        "example": "https://www.efinancialcareers.com/jobs-Hong_Kong-Hong_Kong-Quant_Trader.id24984010"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Still open? (status)",
+                        "description": "open for every search result. For a checked link: open, closed (expired) or not found.",
+                        "example": "open"
+                    },
+                    "platform": {
+                        "type": "string",
+                        "title": "Job site (platform)",
+                        "description": "The site the job came from: always efinancialcareers here.",
+                        "example": "efinancialcareers"
+                    },
+                    "companySlug": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company page key (companySlug)",
+                        "description": "The company's key in its eFinancialCareers jobs page, efinancialcareers.com/jobs/at-<key>.",
+                        "example": "Citi"
+                    },
+                    "jobId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job ID (jobId)",
+                        "description": "eFinancialCareers' number for the job, the number after .id at the end of its link.",
+                        "example": "24984010"
+                    },
+                    "checkedAt": {
+                        "type": "string",
+                        "title": "Checked at (checkedAt)",
+                        "description": "When the run read eFinancialCareers, in UTC.",
+                        "example": "2026-11-10T10:50:04+00:00"
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job description (description)",
+                        "description": "The job description as plain text, with details on.",
+                        "example": "Citi is seeking a senior Quant Trader..."
+                    },
+                    "descriptionHtml": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Description as HTML (descriptionHtml)",
+                        "description": "The job description in HTML as eFinancialCareers shows it, with details on.",
+                        "example": "<p>Citi is seeking a senior Quant Trader...</p>"
+                    },
+                    "reference": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job reference (reference)",
+                        "description": "The employer's own reference for the job, with details on.",
+                        "example": "26966889"
+                    },
+                    "city": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Town or city (city)",
+                        "description": "With details on: the job's city.",
+                        "example": "Hong Kong"
+                    },
+                    "region": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "State or region (region)",
+                        "description": "With details on: the job's state, province or region.",
+                        "example": "Hong Kong"
+                    },
+                    "country": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country name (country)",
+                        "description": "With details on: the job's country.",
+                        "example": "Hong Kong"
+                    },
+                    "countryCode": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country code (countryCode)",
+                        "description": "With details on: the two-letter code of that country.",
+                        "example": "HK"
+                    }
+                }
+            },
+            "views": {
+                "jobs": {
+                    "title": "Jobs",
+                    "description": "One row per job: what it is, where, the contract, the sectors, the pay, whether an agency posted it and when it was first posted, with its link.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "location",
+                            "contractType",
+                            "sectors",
+                            "salary",
+                            "agency",
+                            "seniority",
+                            "postedAt",
+                            "jobUrl"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "location": {
+                                "label": "Main location (location)",
+                                "format": "text"
+                            },
+                            "contractType": {
+                                "label": "Contract type (contractType)",
+                                "format": "text"
+                            },
+                            "sectors": {
+                                "label": "Job sectors (sectors)",
+                                "format": "array"
+                            },
+                            "salary": {
+                                "label": "Pay as shown (salary)",
+                                "format": "text"
+                            },
+                            "agency": {
+                                "label": "Posted by an agency? (agency)",
+                                "format": "boolean"
+                            },
+                            "seniority": {
+                                "label": "Seniority level (seniority)",
+                                "format": "text"
+                            },
+                            "postedAt": {
+                                "label": "First posted (postedAt)",
+                                "format": "date"
+                            },
+                            "jobUrl": {
+                                "label": "Job link (jobUrl)",
+                                "format": "link"
+                            }
+                        }
+                    }
+                },
+                "details": {
+                    "title": "Details",
+                    "description": "The description, the poster, skills, pay as numbers, both dates, the reference and every other field of each job.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "description",
+                            "postedBy",
+                            "postedByIndustry",
+                            "skills",
+                            "salaryMin",
+                            "salaryMax",
+                            "salaryCurrency",
+                            "employmentType",
+                            "workType",
+                            "refreshedAt",
+                            "expiresAt",
+                            "reference",
+                            "city",
+                            "country",
+                            "applyUrl",
+                            "jobId",
+                            "status",
+                            "checkedAt"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "description": {
+                                "label": "Job description (description)",
+                                "format": "text"
+                            },
+                            "postedBy": {
+                                "label": "Posted by (postedBy)",
+                                "format": "text"
+                            },
+                            "postedByIndustry": {
+                                "label": "Industry (postedByIndustry)",
+                                "format": "text"
+                            },
+                            "skills": {
+                                "label": "Skills asked for (skills)",
+                                "format": "array"
+                            },
+                            "salaryMin": {
+                                "label": "Lowest pay (salaryMin)",
+                                "format": "number"
+                            },
+                            "salaryMax": {
+                                "label": "Highest pay (salaryMax)",
+                                "format": "number"
+                            },
+                            "salaryCurrency": {
+                                "label": "Pay currency (salaryCurrency)",
+                                "format": "text"
+                            },
+                            "employmentType": {
+                                "label": "Job type (employmentType)",
+                                "format": "text"
+                            },
+                            "workType": {
+                                "label": "Remote or office (workType)",
+                                "format": "text"
+                            },
+                            "refreshedAt": {
+                                "label": "Moved to the top (refreshedAt)",
+                                "format": "date"
+                            },
+                            "expiresAt": {
+                                "label": "Closes on (expiresAt)",
+                                "format": "date"
+                            },
+                            "reference": {
+                                "label": "Job reference (reference)",
+                                "format": "text"
+                            },
+                            "city": {
+                                "label": "Town or city (city)",
+                                "format": "text"
+                            },
+                            "country": {
+                                "label": "Country name (country)",
+                                "format": "text"
+                            },
+                            "applyUrl": {
+                                "label": "Apply link (applyUrl)",
+                                "format": "link"
+                            },
+                            "jobId": {
+                                "label": "Job ID (jobId)",
+                                "format": "text"
+                            },
+                            "status": {
+                                "label": "Still open? (status)",
+                                "format": "text"
+                            },
+                            "checkedAt": {
+                                "label": "Checked at (checkedAt)",
+                                "format": "date"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "keyValueStore": {
+            "actorKeyValueStoreSchemaVersion": 1,
+            "title": "Run summary",
+            "description": "The OUTPUT record: how many jobs eFinancialCareers listed, read, matched and saved, the checked links, the notes about how the input was read and the settings used, the filters sent to eFinancialCareers' own search included.",
+            "collections": {
+                "summary": {
+                    "title": "Run summary (OUTPUT)",
+                    "description": "Status, message, counts of jobs read, matched and saved, checked links, notes and settings.",
+                    "key": "OUTPUT"
+                }
+            }
+        }
+    }
+}

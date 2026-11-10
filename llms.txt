@@ -1,0 +1,139 @@
+# eFinancialCareers Jobs Scraper & API - Banking & Quant Jobs
+
+> eFinancialCareers jobs scraper and API: every finance, banking and quant job on efinancialcareers.com, all countries, searched live and newest first by first posting.
+
+## Summary
+
+eFinancialCareers Jobs Search is an Apify actor that searches every job on efinancialcareers.com, the job board for finance, banking and quant roles, in every country at once, and returns one row per job, newest first: title, company, place, contract type, sectors, pay as shown and as numbers, whether a recruitment agency posted it, skills, first posting date and link. On 2026-11-10 the site listed about 70,400 open jobs in 66 countries, the UK, the US, Germany, France, Hong Kong and Singapore first. It reads the public JSON APIs that the site's own pages call, live at run time, with no login and no API key. Each job is dated by its first posting, the date its own page gives Google, because the site moves paid jobs back to the top of its list every 6 days, and expired jobs the site still lists are left out.
+
+Store: https://apify.com/anshumanatrey/efinancialcareers-jobs-search
+Source: https://github.com/AnshumanAtrey/efinancialcareers-jobs-search
+
+## Key features
+
+- Every eFinancialCareers country site in one search, about 70,400 jobs on 2026-11-10, or the places typed (cities, countries, regions such as EMEA or the Gulf).
+- New jobs, not reposted ones: `postedAt` is the first posting, `refreshedAt` the date the site last moved the job to the top.
+- Expired jobs the site still lists are left out (44 of 1,000 on 2026-11-10).
+- Agency or employer on every row: `agency`, `postedBy` and `postedByIndustry` from the company profile the job page shows (HR & Recruitment marks an agency).
+- The site's own filters: 36 sectors, 10 seniority levels (named on each row), contract type, remote or office, minimum pay in any currency, company.
+- One keyword is enough, or a search box entry such as "risk manager in Zurich"; an empty form returns the newest jobs of every kind.
+- Job link check: each pasted eFinancialCareers job link, from any country site, comes back open, closed or not found.
+- A search that finds nothing says why: the site has no job inside your filters, or which filter left jobs out and how to loosen it.
+
+## Input keys
+
+- Job titles to find (searchTerms): one per line; a job matches when its title has every word.
+- Where the job is (location): cities, countries or regions; empty is every country.
+- Job sector (sector): quant, investment-banking, asset-management, hedge-funds, private-equity, risk, compliance and the rest.
+- Seniority level (seniority): intern-graduate, junior, analyst, associate, avp-senior, vp, svp-head, director, managing-director, c-suite.
+- Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days (the default), any time, or your own period, by first posting.
+- Number of jobs (maxJobs): 100 by default, 0 for every match.
+- Full details (includeDetails): adds the description, the employer's own apply link, the job reference, and the city, region and country.
+- Job type (employmentType): full-time, part-time, contract, intern, temporary.
+- Remote or office (workType): remote, hybrid, onsite, where the site states it (about 1 job in 25).
+- Minimum pay (minSalary) and Pay currency (salaryCurrency): the lowest yearly pay, such as £100k or 150000 USD.
+- No agency jobs (excludeAgencies): leaves out jobs posted by companies the site files under HR & Recruitment.
+- Leave out words (excludeTerms): drops jobs whose title has these words.
+- Match full text (searchDescriptions): keeps every job the site's own search finds for your words.
+- Only these companies (companies): company names or company page links.
+- Job links to check (jobUrls): checks links instead of searching.
+
+## Pricing
+
+PAY_PER_EVENT model, platform usage included:
+
+- Job: $0.0001 per saved job ($0.10 per 1,000), and per checked link that is closed or not found
+- Job with details: $0.00011 per saved job with full details on ($0.11 per 1,000)
+- Run start: $0.001 per GB of memory, charged by Apify when a run starts
+
+Typical costs (free plan price, default memory):
+
+- 100 newest jobs: $0.011
+- 100 jobs with full details: $0.012
+- 1,000 jobs: $0.101
+
+Apify's free $5 monthly credit covers about 45,000 jobs in runs of 100.
+
+## Speed
+
+Measured on a laptop on 2026-11-10: the example input (quant) 24 s, the empty form 41 s, compliance in Singapore 13 s, and 1,000 jobs 93 s with a 95 MB memory peak. Each job is opened once to read its first posting.
+
+## How to call it
+
+- Apify API: POST https://api.apify.com/v2/acts/anshumanatrey~efinancialcareers-jobs-search/run-sync-get-dataset-items with your Apify token and the input as JSON.
+- Python: `ApifyClient("<YOUR_APIFY_TOKEN>").actor("anshumanatrey/efinancialcareers-jobs-search").call(run_input={"searchTerms": ["quant"]})`
+- MCP: https://mcp.apify.com?tools=anshumanatrey/efinancialcareers-jobs-search
+
+## When to use
+
+- New quant, risk, compliance, investment banking and asset management jobs by title, city, sector and seniority, on a daily schedule.
+- Which banks, funds and fintechs hire for a role right now, where and at what level, with or without agency postings.
+- Finance companies hiring as a sales signal, and demand by sector and city.
+- One clean feed of eFinancialCareers jobs for a data pipeline or an AI agent.
+
+## When not to use
+
+- Pay analysis across every job: 82% of jobs show Competitive, and pay amounts are filled for about 8%.
+- Remote-only job hunting: the site states the work arrangement on about 1 job in 25.
+- Jobs from other boards such as LinkedIn or Indeed.
+
+## Sample input
+
+```json
+{
+  "searchTerms": ["quant"],
+  "location": ["London", "New York"],
+  "sector": ["hedge-funds"],
+  "postedWithin": "7 days",
+  "maxJobs": 100
+}
+```
+
+## Sample output (one record)
+
+```json
+{
+  "title": "Alternative Data Quant Researcher",
+  "company": "Selby Jennings",
+  "location": "New York, United States",
+  "workType": "hybrid",
+  "employmentType": "full-time",
+  "salary": "USD400000 - USD700000 per year",
+  "postedAt": "2026-11-09T23:07:36Z",
+  "expiresAt": "2026-12-09T23:45:00Z",
+  "jobUrl": "https://www.efinancialcareers.com/jobs-United_States-NY-Manhattan-Alternative_Data_Quant_Researcher.id24985574",
+  "status": "open",
+  "platform": "efinancialcareers",
+  "jobId": "24985574",
+  "salaryMin": 400000,
+  "salaryMax": 700000,
+  "salaryCurrency": "USD",
+  "contractType": "Permanent",
+  "sectors": ["Quantitative Analytics: Equity", "Hedge Funds: IT/Quant", "Hedge Funds: Research Analysis"],
+  "agency": true,
+  "postedBy": "Selby Jennings",
+  "postedByIndustry": "HR & Recruitment",
+  "refreshedAt": "2026-11-09T23:07:36Z"
+}
+```
+
+## Differentiators vs alternatives
+
+- vs blackfalcondata/efinancialcareers-scraper and shahidirfan/eFinancialCareers-Jobs-Scraper (27 users in 30 days each): they give the site's listing date, which moves every 6 days on paid jobs, and search one country or one keyword per run; this actor dates jobs by their first posting, searches every country at once, leaves expired jobs out and marks agencies.
+- vs solidcode/efinancialcareers-scraper (17 users): it searches one region per run, US by default, and filters by the site's posting window; this actor reads every country and filters by first posting.
+- vs eFinancialCareers' own search: it lists reposted jobs as new and still lists some expired ones; this actor keeps the jobs whose title has your words, newest by first posting.
+
+## Documentation
+
+- Apify Store: https://apify.com/anshumanatrey/efinancialcareers-jobs-search
+- GitHub repo: https://github.com/AnshumanAtrey/efinancialcareers-jobs-search
+- Issues / feedback: GitHub Issues on the above repo
+- License: MIT
+
+## Maintainer
+
+Anshuman Atrey, builder of a portfolio of data and OSINT actors on Apify, https://linkedin.com/in/anshumanatrey.
+
+## Last updated
+
+2026-11-10

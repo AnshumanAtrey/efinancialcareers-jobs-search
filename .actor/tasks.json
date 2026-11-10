@@ -1,0 +1,356 @@
+{
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only), and only once the Actor is public. Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries efinancialcareers. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json.",
+    "options": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "tasks": [
+        {
+            "name": "efinancialcareers-quant-jobs-london",
+            "title": "Find quant jobs in London on eFinancialCareers",
+            "description": "Get the newest quant jobs in London from efinancialcareers.com, first posted in the last 30 days: quant researchers, traders, developers and analysts, with the company, pay when shown, sectors, whether an agency posted it and the link.",
+            "input": {
+                "searchTerms": [
+                    "quant"
+                ],
+                "location": [
+                    "London"
+                ],
+                "sector": [],
+                "seniority": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "employmentType": [],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Quant Jobs in London - eFinancialCareers",
+            "seoDescription": "The newest quant jobs in London from eFinancialCareers: researchers, traders and developers, with company, pay, sectors, agency flag and link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "efinancialcareers-jobs-last-24-hours",
+            "title": "Get the eFinancialCareers jobs posted in the last 24 hours",
+            "description": "Get every job first posted on efinancialcareers.com in the last 24 hours, in every country, newest first, with the company, place, contract, sectors, pay when shown and link. Jobs that were only moved back to the top of the site's list are left out. Schedule it daily for a fresh feed.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "sector": [],
+                "seniority": [],
+                "postedWithin": "24 hours",
+                "maxJobs": 0,
+                "includeDetails": false,
+                "employmentType": [],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "New eFinancialCareers Jobs in the Last 24 Hours",
+            "seoDescription": "Every job first posted on eFinancialCareers in the last 24 hours, all countries, with company, place, sectors, pay and link. Run it daily.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "efinancialcareers-investment-banking-jobs-new-york",
+            "title": "Find investment banking jobs in New York on eFinancialCareers",
+            "description": "Get the newest investment banking and M&A jobs in New York from efinancialcareers.com, by the site's own sector, with the company, seniority filters, pay when shown and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "New York"
+                ],
+                "sector": [
+                    "investment-banking"
+                ],
+                "seniority": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "employmentType": [],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Investment Banking Jobs in New York - eFinancialCareers",
+            "seoDescription": "The newest investment banking and M&A jobs in New York from eFinancialCareers, with company, pay when shown, sectors and link.",
+            "inputSchemaFields": [
+                "location",
+                "sector",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "efinancialcareers-compliance-jobs-singapore",
+            "title": "Find compliance jobs in Singapore on eFinancialCareers",
+            "description": "Get the newest compliance, AML and KYC jobs in Singapore from efinancialcareers.com, with the company, contract type, pay when shown, sectors and link.",
+            "input": {
+                "searchTerms": [
+                    "compliance"
+                ],
+                "location": [
+                    "Singapore"
+                ],
+                "sector": [],
+                "seniority": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "employmentType": [],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Compliance Jobs in Singapore - eFinancialCareers",
+            "seoDescription": "The newest compliance jobs in Singapore from eFinancialCareers, with company, contract type, pay when shown, sectors and link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "efinancialcareers-risk-jobs-hong-kong",
+            "title": "Find risk management jobs in Hong Kong on eFinancialCareers",
+            "description": "Get the newest risk management jobs in Hong Kong from efinancialcareers.com: market, credit and operational risk, with the company, pay when shown and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "Hong Kong"
+                ],
+                "sector": [
+                    "risk"
+                ],
+                "seniority": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "employmentType": [],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Risk Management Jobs in Hong Kong - eFinancialCareers",
+            "seoDescription": "The newest risk management jobs in Hong Kong from eFinancialCareers: market, credit and operational risk, with company, pay and link.",
+            "inputSchemaFields": [
+                "location",
+                "sector",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "efinancialcareers-hedge-fund-jobs",
+            "title": "Find hedge fund jobs worldwide on eFinancialCareers",
+            "description": "Get the newest hedge fund jobs on efinancialcareers.com in every country: quant and IT, research, trading, risk and operations roles at hedge funds, with the company, place, pay when shown and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "sector": [
+                    "hedge-funds"
+                ],
+                "seniority": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "employmentType": [],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Hedge Fund Jobs Worldwide - eFinancialCareers",
+            "seoDescription": "Every hedge fund job on eFinancialCareers in every country: quant, research, trading and risk roles, with company, place, pay and link.",
+            "inputSchemaFields": [
+                "sector",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "efinancialcareers-vice-president-jobs-london",
+            "title": "Find vice president level jobs in London on eFinancialCareers",
+            "description": "Get the newest vice president and principal level jobs in London from efinancialcareers.com, by the site's own seniority level, with the company, sectors, pay when shown and link. Each row names its level.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "London"
+                ],
+                "sector": [],
+                "seniority": [
+                    "vp"
+                ],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "employmentType": [],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "VP Level Finance Jobs in London - eFinancialCareers",
+            "seoDescription": "The newest vice president and principal jobs in London from eFinancialCareers, with company, sectors, pay when shown and link.",
+            "inputSchemaFields": [
+                "location",
+                "seniority",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "efinancialcareers-contract-jobs-uk",
+            "title": "Find contract finance jobs in the UK on eFinancialCareers",
+            "description": "Get the newest contract and freelance jobs in the United Kingdom from efinancialcareers.com, with the company, day rate or pay when shown, sectors and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "United Kingdom"
+                ],
+                "sector": [],
+                "seniority": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "employmentType": [
+                    "contract"
+                ],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Contract Finance Jobs in the UK - eFinancialCareers",
+            "seoDescription": "The newest contract finance and banking jobs in the UK from eFinancialCareers, with company, day rate when shown, sectors and link.",
+            "inputSchemaFields": [
+                "location",
+                "employmentType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "efinancialcareers-jobs-without-agencies",
+            "title": "Get finance jobs straight from employers on eFinancialCareers",
+            "description": "Get the newest jobs on efinancialcareers.com without the ones posted by recruitment agencies and job platforms (those eFinancialCareers files under HR & Recruitment), with the company, place, sectors, pay when shown and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "sector": [],
+                "seniority": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "employmentType": [],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": true,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Finance Jobs Without Agencies - eFinancialCareers",
+            "seoDescription": "The newest eFinancialCareers jobs without the ones recruitment agencies posted, with company, place, sectors, pay when shown and link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "excludeAgencies",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "efinancialcareers-jobs-with-details",
+            "title": "Get eFinancialCareers jobs with descriptions and apply links",
+            "description": "Get the newest jobs on efinancialcareers.com with full details: the description as text and HTML, the employer's own apply link (Workday, iCIMS, Lever) when the job is applied for there, the job reference and the city and country.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "sector": [],
+                "seniority": [],
+                "postedWithin": "30 days",
+                "maxJobs": 50,
+                "includeDetails": true,
+                "employmentType": [],
+                "workType": [],
+                "minSalary": "",
+                "salaryCurrency": "",
+                "excludeAgencies": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "eFinancialCareers Jobs with Descriptions",
+            "seoDescription": "The newest eFinancialCareers jobs with full descriptions, employer apply links, references, company, pay and sectors. No login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "includeDetails",
+                "maxJobs"
+            ],
+            "datasetView": "details"
+        }
+    ]
+}
