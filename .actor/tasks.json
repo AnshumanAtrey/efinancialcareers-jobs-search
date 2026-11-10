@@ -1,5 +1,5 @@
 {
-    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only), and only once the Actor is public. Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries efinancialcareers. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json.",
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only), and only once the Actor is public. Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries efinancialcareers. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json. Tasks marked publish false stay saved but off the Store: the account publishes at most 100 pages across all actors, so each actor keeps 2 or more by its earnings and search traffic (2026-11-11).",
     "options": {
         "build": "latest",
         "memoryMbytes": 1024,
@@ -44,6 +44,7 @@
         },
         {
             "name": "efinancialcareers-jobs-last-24-hours",
+            "publish": false,
             "title": "Get the eFinancialCareers jobs posted in the last 24 hours",
             "description": "Get every job first posted on efinancialcareers.com in the last 24 hours, in every country, newest first, with the company, place, contract, sectors, pay when shown and link. Jobs that were only moved back to the top of the site's list are left out. Schedule it daily for a fresh feed.",
             "input": {
@@ -112,6 +113,7 @@
         },
         {
             "name": "efinancialcareers-compliance-jobs-singapore",
+            "publish": false,
             "title": "Find compliance jobs in Singapore on eFinancialCareers",
             "description": "Get the newest compliance, AML and KYC jobs in Singapore from efinancialcareers.com, with the company, contract type, pay when shown, sectors and link.",
             "input": {
@@ -148,6 +150,7 @@
         },
         {
             "name": "efinancialcareers-risk-jobs-hong-kong",
+            "publish": false,
             "title": "Find risk management jobs in Hong Kong on eFinancialCareers",
             "description": "Get the newest risk management jobs in Hong Kong from efinancialcareers.com: market, credit and operational risk, with the company, pay when shown and link.",
             "input": {
@@ -184,6 +187,7 @@
         },
         {
             "name": "efinancialcareers-hedge-fund-jobs",
+            "publish": false,
             "title": "Find hedge fund jobs worldwide on eFinancialCareers",
             "description": "Get the newest hedge fund jobs on efinancialcareers.com in every country: quant and IT, research, trading, risk and operations roles at hedge funds, with the company, place, pay when shown and link.",
             "input": {
@@ -218,6 +222,7 @@
         },
         {
             "name": "efinancialcareers-vice-president-jobs-london",
+            "publish": false,
             "title": "Find vice president level jobs in London on eFinancialCareers",
             "description": "Get the newest vice president and principal level jobs in London from efinancialcareers.com, by the site's own seniority level, with the company, sectors, pay when shown and link. Each row names its level.",
             "input": {
@@ -254,6 +259,7 @@
         },
         {
             "name": "efinancialcareers-contract-jobs-uk",
+            "publish": false,
             "title": "Find contract finance jobs in the UK on eFinancialCareers",
             "description": "Get the newest contract and freelance jobs in the United Kingdom from efinancialcareers.com, with the company, day rate or pay when shown, sectors and link.",
             "input": {
@@ -290,6 +296,7 @@
         },
         {
             "name": "efinancialcareers-jobs-without-agencies",
+            "publish": false,
             "title": "Get finance jobs straight from employers on eFinancialCareers",
             "description": "Get the newest jobs on efinancialcareers.com without the ones posted by recruitment agencies and job platforms (those eFinancialCareers files under HR & Recruitment), with the company, place, sectors, pay when shown and link.",
             "input": {
@@ -322,6 +329,7 @@
         },
         {
             "name": "efinancialcareers-jobs-with-details",
+            "publish": false,
             "title": "Get eFinancialCareers jobs with descriptions and apply links",
             "description": "Get the newest jobs on efinancialcareers.com with full details: the description as text and HTML, the employer's own apply link (Workday, iCIMS, Lever) when the job is applied for there, the job reference and the city and country.",
             "input": {
