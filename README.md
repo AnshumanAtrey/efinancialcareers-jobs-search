@@ -4,6 +4,13 @@ eFinancialCareers jobs scraper and API: search every job on efinancialcareers.co
 
 Use it as an eFinancialCareers API with no login, an efinancialcareers.com scraper for finance jobs, banking jobs, quant jobs, hedge fund, investment banking, risk and compliance jobs in London, New York, Singapore, Hong Kong, Frankfurt or Zurich, or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent over MCP, and export JSON, CSV or Excel. It reads the same public JSON APIs that efinancialcareers.com's own pages call. Available as an [Apify Actor](https://apify.com/anshumanatrey/efinancialcareers-jobs-search). $0.000023 per job, $0.000034 with full details, $0.0021 per run start, no login, no API key.
 
+**Use it from an AI assistant:**
+
+- **Claude** (claude.ai and the desktop app): [Add eFinancialCareers Jobs to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=eFinancialCareers%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fefinancialcareers-jobs-search), click Continue, sign in to Apify, Allow, and ask in plain words.
+- **Claude Code:** `claude mcp add --transport http efinancialcareers-jobs-search "https://mcp.apify.com?tools=anshumanatrey/efinancialcareers-jobs-search"`, then run `/mcp` to sign in to Apify.
+- **Codex:** `codex mcp add efinancialcareers-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/efinancialcareers-jobs-search"`, then `codex mcp login efinancialcareers-jobs-search`.
+- **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/efinancialcareers-jobs-search`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
+
 ## What does it do?
 
 - **Searches every eFinancialCareers country site at once.** On 2026-11-10 the site listed about 70,400 open jobs in 66 countries: Europe 40,000 (the UK 11,500, Germany 9,900, France 9,100), North America 18,700, Asia 9,650 (India, Hong Kong, Singapore), Australia 1,200 and the Gulf 790. One run reads them all, or the places you type.

@@ -9,6 +9,13 @@ eFinancialCareers Jobs Search is an Apify actor that searches every job on efina
 Store: https://apify.com/anshumanatrey/efinancialcareers-jobs-search
 Source: https://github.com/AnshumanAtrey/efinancialcareers-jobs-search
 
+## Use it from an AI assistant
+
+- Claude (claude.ai and the desktop app): https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=eFinancialCareers%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fefinancialcareers-jobs-search (click Continue, sign in to Apify, Allow).
+- Claude Code: claude mcp add --transport http efinancialcareers-jobs-search "https://mcp.apify.com?tools=anshumanatrey/efinancialcareers-jobs-search", then /mcp to sign in to Apify.
+- Codex: codex mcp add efinancialcareers-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/efinancialcareers-jobs-search", then codex mcp login efinancialcareers-jobs-search.
+- Any other MCP client: https://mcp.apify.com?tools=anshumanatrey/efinancialcareers-jobs-search, signed in with Apify or Authorization: Bearer <APIFY_TOKEN>.
+
 ## Key features
 
 - Every eFinancialCareers country site in one search, about 70,400 jobs on 2026-11-10, or the places typed (cities, countries, regions such as EMEA or the Gulf).
